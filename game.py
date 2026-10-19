@@ -79,7 +79,7 @@ def get_computer_throw(round_results, user_picks):
                 return key
 
 
-def determine_outcome(user_answer, computer_answer, user_score, computer_score):
+def determine_outcome(user_answer, computer_answer, user_score, computer_score, round_results, user_picks) :
     # Keep asking for new moves until there is no tie.
     while user_answer == computer_answer:
         print(
@@ -87,7 +87,9 @@ def determine_outcome(user_answer, computer_answer, user_score, computer_score):
             f"picked {computer_answer}! Try again!"
         )
         user_answer = get_user_throw()
-        computer_answer = get_computer_throw()
+        user_picks.append(user_answer)
+        round_results.append(False)
+        computer_answer = get_computer_throw(round_results, user_picks)
 
     # Check whether the user's move defeats the computer's move.
     if computer_answer in winning_moves[user_answer]:
@@ -162,7 +164,7 @@ def main():
             computer_throw = get_computer_throw(round_results, user_picks)
 
             user_won, user_throw, computer_throw, updated_score = determine_outcome(
-                user_throw, computer_throw, user_score, computer_score
+                user_throw, computer_throw, user_score, computer_score, round_results, user_picks
             )
             round_results.append(user_won)
             user_picks.append(user_throw)
