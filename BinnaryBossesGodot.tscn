@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c6mslj6sob3ry"]
+
+[node name="Node2D" type="Node2D" unique_id=2076098109]
+
+[node name="Button" type="Button" parent="." unique_id=1037129374]
+offset_left = 105.0
+offset_top = 496.0
+offset_right = 278.0
+offset_bottom = 548.0
+text = "Attack"
+
+[node name="Button2" type="Button" parent="." unique_id=599075004]
+offset_left = 330.0
+offset_top = 499.0
+offset_right = 484.0
+offset_bottom = 552.0
+text = "Parry"
+
+[node name="Button3" type="Button" parent="." unique_id=1774851180]
+offset_left = 549.0
+offset_top = 497.0
+offset_right = 720.0
+offset_bottom = 553.0
+text = "Magic"
