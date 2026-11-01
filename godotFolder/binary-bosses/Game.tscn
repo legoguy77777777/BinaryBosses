@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://c3a1ryixast4j"]
+
+[ext_resource type="Script" uid="uid://bj2isonhqkt4r" path="res://battle.gd" id="1_xkndl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wbfu4"]
+load_path = "res://.godot/imported/Prototype_Background.png-13926b75295a18229909160815a6c261.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4te4v"]
+bg_color = Color(1, 0, 0, 1)
+expand_margin_top = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwscl"]
+bg_color = Color(0, 1, 0, 1)
+expand_margin_top = 30.0
+
+[node name="Game" type="Node2D" unique_id=1377739644]
+
+[node name="Battle" type="Control" parent="." unique_id=1246631331]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xkndl")
+
+[node name="button_control" type="Control" parent="Battle" unique_id=1414040059]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+
+[node name="attack" type="Button" parent="Battle/button_control" unique_id=935303502]
+top_level = true
+layout_mode = 0
+offset_left = 223.0
+offset_top = 454.0
+offset_right = 415.0
+offset_bottom = 565.0
+text = "Attack"
+
+[node name="parry" type="Button" parent="Battle/button_control" unique_id=783116837]
+top_level = true
+layout_mode = 0
+offset_left = 521.0
+offset_top = 458.0
+offset_right = 740.0
+offset_bottom = 571.0
+text = "Parry"
+
+[node name="magic" type="Button" parent="Battle/button_control" unique_id=1079329709]
+top_level = true
+layout_mode = 0
+offset_left = 804.0
+offset_top = 455.0
+offset_right = 1020.0
+offset_bottom = 575.0
+text = "Magic"
+
+[node name="Background" type="TextureRect" parent="Battle" unique_id=716862104]
+visible = false
+layout_mode = 0
+offset_right = 2000.0
+offset_bottom = 2000.0
+texture = SubResource("CompressedTexture2D_wbfu4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Battle" unique_id=637442850]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 210.0
+offset_right = 1031.0
+offset_bottom = 283.0
+
+[node name="Enemy" type="TextureRect" parent="Battle/VBoxContainer" unique_id=38835033]
+layout_mode = 2
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="Battle/VBoxContainer" unique_id=866809172]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4te4v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mwscl")
+step = 1.0
+value = 75.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Battle/VBoxContainer/EnemyHealthBar" unique_id=936254647]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -30.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "HP: 5/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Battle/button_control/attack" to="Battle" method="_on_attack_pressed"]
+[connection signal="pressed" from="Battle/button_control/parry" to="Battle" method="_on_parry_pressed"]
+[connection signal="pressed" from="Battle/button_control/magic" to="Battle" method="_on_magic_pressed"]
