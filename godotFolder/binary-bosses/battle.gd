@@ -6,7 +6,9 @@ var current_enemy_health = 0
 
 func _ready():
 	set_health($VBoxContainer/EnemyHealthBar, State.enemy_current_health, State.enemy_max_health)
+	set_health($Panel/HBoxContainer/PlayerHealthBar, State.player_current_health, State.player_max_health)
 	current_enemy_health = State.enemy_current_health
+	current_player_health = State.player_current_health
 
 
 func set_health(progress_bar, health, max_health):
@@ -38,6 +40,8 @@ func move_checker(player_move, enemy_move):
 		current_enemy_health = max(0, current_enemy_health - State.player_damage)
 		set_health($VBoxContainer/EnemyHealthBar, current_enemy_health, State.enemy_max_health)
 	else:
-		pass
+		current_player_health = max(0, current_player_health - State.enemy_damage)
+		set_health($Panel/HBoxContainer/PlayerHealthBar, current_player_health, State.player_max_health)
 	
-	pass
+	if current_player_health == 0 or current_enemy_health == 0:
+		get_tree().quit()

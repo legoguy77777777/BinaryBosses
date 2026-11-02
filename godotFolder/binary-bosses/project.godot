@@ -21,8 +21,11 @@ State="*uid://dlyud4t7aaxmi"
 
 [display]
 
+window/size/viewport_width=2000
+window/size/viewport_height=2000
+window/size/mode=3
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 
 [physics]
 
