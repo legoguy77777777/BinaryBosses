@@ -80,13 +80,22 @@ func enemy_turn(player_move):
 	enemy_move = optimal_counters[index]
 	
 	# update transition scores and arrays AFTER deciding current move, so no cheating
+	var decay_factor = 0.8
+	
+	# apply decay to markov
+	for previous_move in transition_scores:
+		for next_move in transition_scores[previous_move]:
+			transition_scores[previous_move][next_move] *= decay_factor
+	# apply decay to statistical
+	for key in action_scores:
+			action_scores[key] *= decay_factor
+			
 	if past_player_moves.size() > 0:
 		var previous_move = past_player_moves[-1]
-		
 		# update markov
 		transition_scores[previous_move][player_move] += 1
 		# update statistical model
-		action_scores[previous_move] += 1
+		action_scores[player_move] = 0.8*(action_scores[previous_move]) + 1
 	
 	past_comp_moves.append(enemy_move)
 	past_player_moves.append(player_move) 
